@@ -11,7 +11,7 @@ class VariousDiscs extends StatefulWidget {
 
 class _VariousDiscsState extends State<VariousDiscs> {
   final _discs = <DiscData>[];
-  int _count = 3;
+  int _count = 30;
 
   @override
   void initState() {
@@ -21,13 +21,10 @@ class _VariousDiscsState extends State<VariousDiscs> {
 
   void _makeDiscs() {
     _discs.clear();
-    _count = nextInt();
     for (int i = 0; i < _count; i++) {
-      _discs.add(DiscData());
+      _discs.add(DiscData()..index=i);
     }
   }
-
-  int nextInt() => Random().nextInt(100) + 1;
 
   @override
   Widget build(BuildContext context) {
@@ -38,32 +35,32 @@ class _VariousDiscsState extends State<VariousDiscs> {
       ),
       body: Container(
         color: Colors.black87,
-        child: GestureDetector(
-          onTap: () => setState(() {
-            print('clicked: $_count');
-            _makeDiscs();
-          }),
-          child: Stack(
-            children: [
-              for (final disc in _discs)
-                Positioned.fill(
+        child: Stack(
+          children: [
+//            for (final disc in _discs)
+            ..._discs.map((disc) => Positioned.fill(
                   child: AnimatedAlign(
                     duration: Duration(milliseconds: 1500),
                     curve: Curves.easeInOut,
                     alignment: disc.alignment,
-                    child: AnimatedContainer(
-                      duration: Duration(milliseconds: 500),
-                      decoration: BoxDecoration(
-                        color: disc.color,
-                        shape: BoxShape.circle,
+                    child: GestureDetector(
+                      onTap: () => setState(() {
+                        print('clicked: ${disc.index}');
+                        _makeDiscs();
+                      }),
+                      child: AnimatedContainer(
+                        duration: Duration(milliseconds: 500),
+                        decoration: BoxDecoration(
+                          color: disc.color,
+                          shape: BoxShape.circle,
+                        ),
+                        height: disc.size,
+                        width: disc.size,
                       ),
-                      height: disc.size,
-                      width: disc.size,
                     ),
                   ),
-                ),
-            ],
-          ),
+                )),
+          ],
         ),
       ),
     );

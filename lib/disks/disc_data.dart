@@ -8,6 +8,7 @@ class DiscData {
   double size;
   Color color;
   Alignment alignment;
+  int index = -1;
 
   DiscData() {
     color = Color.fromARGB(

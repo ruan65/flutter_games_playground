@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:game_ground/disks/one_disc.dart';
+import 'package:game_ground/paint/painter_one.dart';
 
 import 'disks/various_disks_screen.dart';
 
@@ -26,6 +27,10 @@ class MainScreen extends StatelessWidget {
             FlatButton(
               child: Text('One disc'),
               onPressed: () => navigateTo(context, OneDisc()),
+            ),
+            FlatButton(
+              child: Text('Painter one'),
+              onPressed: () => navigateTo(context, PainterOne()),
             ),
           ],
         ));

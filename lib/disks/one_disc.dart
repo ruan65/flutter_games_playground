@@ -26,8 +26,11 @@ class _OneDiscState extends State<OneDisc> {
             Positioned.fill(
               child: AnimatedAlign(
                 duration: Duration(milliseconds: 500),
+                curve: Curves.easeOut,
                 alignment: dd.alignment,
-                child: Container(
+                child: AnimatedContainer(
+                  duration: Duration(milliseconds: 500),
+                  curve: Curves.easeOut,
                   decoration: BoxDecoration(
                     color: dd.color,
                     shape: BoxShape.circle,

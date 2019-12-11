@@ -3,7 +3,7 @@ import 'package:game_ground/disks/one_disc.dart';
 import 'package:game_ground/paint/painter_one.dart';
 
 import 'disks/various_disks_screen.dart';
-import 'flame/flame_game.dart';
+import 'flame/first_game/flame_game.dart';
 
 void main() async {
   runApp(

@@ -4,6 +4,7 @@ import 'package:game_ground/paint/painter_one.dart';
 
 import 'disks/various_disks_screen.dart';
 import 'flame/first_game/flame_game.dart';
+import 'flame/flame_screen.dart';
 
 void main() async {
   runApp(
@@ -35,7 +36,7 @@ class MainScreen extends StatelessWidget {
             ),
             FlatButton(
               child: Text('Flame'),
-              onPressed: () => navigateTo(context, FlameGamePad()),
+              onPressed: () => navigateTo(context, FlameScreen()),
             ),
           ],
         ));

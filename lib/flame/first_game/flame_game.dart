@@ -2,16 +2,38 @@ import 'dart:math';
 
 import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
+import 'package:flame/util.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import 'components/Fly.dart';
 
-class FlameGamePad extends StatelessWidget {
+class FlameGamePad extends StatefulWidget {
+  final Size size;
+
+  const FlameGamePad(this.size);
+
+  @override
+  _FlameGamePadState createState() => _FlameGamePadState();
+}
+
+class _FlameGamePadState extends State<FlameGamePad> {
+  FlyGame game;
+  Util flameUtil = Util();
+
+  @override
+  void initState() {
+    super.initState();
+    game = FlyGame(widget.size.width, widget.size.height);
+    TapGestureRecognizer tapper = TapGestureRecognizer();
+    tapper.onTapDown = game.onTapDown;
+    flameUtil.addGestureRecognizer(tapper);
+  }
+
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
     return Container(
-      child: FlyGame(size.width, size.height).widget,
+      child: game.widget,
     );
   }
 }
@@ -51,9 +73,21 @@ class FlyGame extends Game {
   @override
   void update(double t) {
     flies.forEach((f) => f.update(t));
+    flies.removeWhere((f) => f.isOffScreen);
+  }
+
+  onTapDown(TapDownDetails d) {
+    bool spawn = false;
+    flies.forEach((Fly fly) {
+      if (fly.flyRect.contains(d.globalPosition)) {
+        fly.onTapDown();
+        spawn = true;
+      }
+    });
+    if (spawn) spawnFly();
   }
 
   double _rndX() => rnd.nextDouble() * (screenW - tileSize);
 
-  double _rndY() => rnd.nextDouble() * (screenH - tileSize) + kToolbarHeight;
+  double _rndY() => rnd.nextDouble() * (screenH - tileSize);
 }

@@ -6,8 +6,8 @@ class FlameScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: FlameGamePad(),
+//      appBar: AppBar(),
+      body: FlameGamePad(MediaQuery.of(context).size),
     );
   }
 }

@@ -1,12 +1,32 @@
+import 'package:flame/flame.dart';
 import 'package:flutter/material.dart';
 import 'package:game_ground/disks/one_disc.dart';
 import 'package:game_ground/paint/painter_one.dart';
 
 import 'disks/various_disks_screen.dart';
-import 'flame/first_game/flame_game.dart';
 import 'flame/flame_screen.dart';
 
 void main() async {
+
+  Flame.images.loadAll(<String>[
+    'bg/backyard.png',
+    'flies/agile-fly-1.png',
+    'flies/agile-fly-2.png',
+    'flies/agile-fly-dead.png',
+    'flies/drooler-fly-1.png',
+    'flies/drooler-fly-2.png',
+    'flies/drooler-fly-dead.png',
+    'flies/house-fly-1.png',
+    'flies/house-fly-2.png',
+    'flies/house-fly-dead.png',
+    'flies/hungry-fly-1.png',
+    'flies/hungry-fly-2.png',
+    'flies/hungry-fly-dead.png',
+    'flies/macho-fly-1.png',
+    'flies/macho-fly-2.png',
+    'flies/macho-fly-dead.png',
+  ]);
+
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,

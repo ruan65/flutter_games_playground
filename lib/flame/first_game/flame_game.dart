@@ -5,6 +5,7 @@ import 'package:flame/game.dart';
 import 'package:flame/util.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:game_ground/flame/first_game/components/backyard.dart';
 
 import 'components/Fly.dart';
 
@@ -42,6 +43,7 @@ class FlyGame extends Game {
   double screenW;
   double screenH;
   double tileSize;
+  Backyard bg;
   List<Fly> flies = [];
   final rnd = Random();
 
@@ -50,6 +52,7 @@ class FlyGame extends Game {
 
     tileSize = screenW / 9;
     init();
+    bg = Backyard(this);
     spawnFly();
   }
 
@@ -63,10 +66,7 @@ class FlyGame extends Game {
 
   @override
   void render(Canvas canvas) {
-    Rect bgRect = Rect.fromLTWH(0, 0, screenW, screenH);
-    Paint bgPaint = Paint();
-    bgPaint.color = Color(0xff576574);
-    canvas.drawRect(bgRect, bgPaint);
+    bg.render(canvas);
     flies.forEach((f) => f.render(canvas));
   }
 

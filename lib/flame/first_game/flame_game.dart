@@ -6,8 +6,8 @@ import 'package:flame/util.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:game_ground/flame/first_game/components/backyard.dart';
-
-import 'components/Fly.dart';
+import 'package:game_ground/flame/first_game/components/fly.dart';
+import 'package:game_ground/flame/first_game/components/house_fly.dart';
 
 class FlameGamePad extends StatefulWidget {
   final Size size;
@@ -57,7 +57,7 @@ class FlyGame extends Game {
   }
 
   spawnFly() {
-    flies.add(Fly(this, _rndX(), _rndY()));
+    flies.add(HouseFly(this, _rndX(), _rndY()));
   }
 
   init() async {

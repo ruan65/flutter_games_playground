@@ -1,21 +1,27 @@
 import 'dart:ui';
 
+import 'package:flame/sprite.dart';
 import 'package:game_ground/flame/first_game/flame_game.dart';
 
 class Fly {
   final FlyGame game;
+  List<Sprite> flyingSprite;
+  Sprite deadSprite;
+  double flyingSpriteIndex = 0;
   Rect flyRect;
-  Paint flyPaint;
   bool isDead = false;
   bool isOffScreen = false;
 
   Fly(this.game, double x, double y) {
     flyRect = Rect.fromLTWH(x, y, game.tileSize, game.tileSize);
-    flyPaint = Paint()..color = Color(0xff6ab04c);
   }
 
-  render(Canvas c) {
-    c.drawRect(flyRect, flyPaint);
+  void render(Canvas c) {
+    if (isDead) {
+      deadSprite.renderRect(c, flyRect.inflate(2));
+    } else {
+      flyingSprite[flyingSpriteIndex.toInt()].renderRect(c, flyRect.inflate(2));
+    }
   }
 
   update(double t) {
@@ -28,7 +34,6 @@ class Fly {
   }
 
   onTapDown() {
-    flyPaint.color = Color(0xffff4757);
     isDead = true;
   }
 }

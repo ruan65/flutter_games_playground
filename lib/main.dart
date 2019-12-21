@@ -4,7 +4,6 @@ import 'package:game_ground/disks/one_disc.dart';
 import 'package:game_ground/paint/painter_one.dart';
 
 import 'disks/various_disks_screen.dart';
-import 'flame/flame_screen.dart';
 
 void main() async {
 
@@ -53,10 +52,6 @@ class MainScreen extends StatelessWidget {
             FlatButton(
               child: Text('Painter one'),
               onPressed: () => navigateTo(context, PainterOne()),
-            ),
-            FlatButton(
-              child: Text('Flame'),
-              onPressed: () => navigateTo(context, FlameScreen()),
             ),
           ],
         ));
